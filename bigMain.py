@@ -27,8 +27,14 @@ s.bind((ip,port)) #Start Server
 s.listen(1) #Listen for Connections
 
 #Initalisation of Camera
-cap = cv2.VideoCapture(0)
-
+try:
+    cap = cv2.VideoCapture(0)
+except:
+    print('Stopping the Action due to no presence of camera') 
+    for i in range(10):                        #ending the program gracefully
+        print('-',end = '')
+    exit()
+    
 #Initalisation of Log File
 f = open('vidDebug.log','a') #Don't Change This
 
